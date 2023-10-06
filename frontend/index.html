@@ -3,18 +3,30 @@
 <head>
     <title>Ronaldo AI</title>
     <link rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Kalam&family=Mooli&family=Poppins&family=Roboto:wght@500&family=Satisfy&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Ask a Question</h1>
-    <input type="text" id="queryInput" placeholder="Ask me about Cristiano Ronaldo...">
-    <button id="askButton" onclick="askQuestion()">Ask</button>
-    <div id="loader"></div>
-    <div id="response"></div>
-
+    <!-- <h1>Ask a Question</h1> -->
+    <div id="big-box">
+        <div id="big-img">
+            <img src="./images/wp10214604.jpg" alt="CR7">
+        </div>
+        <div id="container">
+            <h1>Ronaldo.ai</h1>
+            <input type="text" id="queryInput" placeholder="Ask me about Cristiano Ronaldo...">
+            <button id="askButton" onclick="askQuestion()">Ask</button>
+            <!-- <div id="loader"></div> -->
+            <div class="spinner">
+                <div class="spinner1"></div>
+            </div>
+            <div id="response"></div>
+            <div id="proof"></div>
+        </div>
+    </div>
     <script>
 
         function toggleLoader(showLoader) {
-            const loader = document.getElementById("loader");
+            const loader = document.querySelector(".spinner");
             const responseElement = document.getElementById("response");
 
             if (showLoader) {

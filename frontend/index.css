@@ -2,15 +2,38 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     color: #333;
+    font-size: 50px;
+    background-image: url(./images/wp10214604.jpg);
+    background-size: cover;
+    /* background-position: center; */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+#big-box{
+    display: flex;
+}
+
+#container{
+    margin: auto;
+    height: 100vh;
+    width: 70%;
+}
+
+img{
+    height: 100vh;
 }
 
 #queryInput {
     padding: 10px;
-    width: 500px;
+    width: 50%;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 50px;
@@ -24,9 +47,17 @@ h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-#loader {
+#askButton:hover{
+    background-color: #fff;
+    color: #007BFF;
+    border: 1px solid black;
+    color: black;
+}
+
+/* #loader {
     display: none;
     margin-top: 20px;
     width: 100px;
@@ -35,17 +66,21 @@ h1 {
     border-top: 10px solid #007BFF;
     border-radius: 50%;
     animation: spin 2s linear infinite;
-}
+} */
 
 #response {
     padding: 20px;
-    width: 50%;
+    line-height: 35px;
+    width: 55%;
     margin: auto;
     margin-top: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    /* display: none; */
+    font-size: 25px;
+    font-family: 'Satisfy', cursive;
+    display: none;
+    position:relative;
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -62,3 +97,32 @@ h1 {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ------Spinner loader---------- */
+.spinner {
+    display: none;
+    background-image: linear-gradient(rgb(186, 66, 255) 35%,rgb(0, 225, 255));
+    width: 80px;
+    margin: auto;
+    height: 80px;
+    animation: spinning82341 1.7s linear infinite;
+    text-align: center;
+    border-radius: 50px;
+    margin-top: 5%;
+    filter: blur(1px);
+    box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+  }
+  
+  .spinner1 {
+    background-color: rgb(255, 255, 255);
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    filter: blur(10px);
+  }
+  
+  @keyframes spinning82341 {
+    to {
+      transform: rotate(360deg);
+    }
+  }
