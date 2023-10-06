@@ -78,6 +78,19 @@
 
     <script>
 
+        function toggleLoader(showLoader) {
+            const loader = document.getElementById("loader");
+            const responseElement = document.getElementById("response");
+
+            if (showLoader) {
+                loader.style.display = "block";
+                responseElement.style.display = "none";
+            } else {
+                loader.style.display = "none";
+                responseElement.style.display = "block";
+            }
+        }
+
         function askQuestion() {
             // Get the query from the input field
             const query = document.getElementById("queryInput").value;
