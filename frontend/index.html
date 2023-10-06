@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask a Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #queryInput {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #askButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #loader {
+            display: none;
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            border: 10px solid #f3f3f3;
+            border-top: 10px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        #response {
+            margin-top: 20px;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ask a Question</h1>
+    <input type="text" id="queryInput" placeholder="Enter your question">
+    <button id="askButton" onclick="askQuestion()">Ask</button>
+    <div id="response"></div>
+
+    <script>
+
+        function askQuestion() {
+            // Get the query from the input field
+            const query = document.getElementById("queryInput").value;
+
+            // Create a JSON payload with the query
+            const payload = { query };
+
+            // Send a POST request to the Flask server
+            fetch('http://localhost:5000/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Extract and display the answer
+                console.log(data)
+                const answer = data.answer;
+                const responseElement = document.getElementById("response");
+                responseElement.innerHTML = `${answer}`;
+                responseElement.style.display = "block";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById("response").innerHTML = 'Error occurred.';
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
