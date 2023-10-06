@@ -7,7 +7,6 @@ load_dotenv()
 
 loader = PyPDFLoader("./docs/CR7.pdf")
 data = loader.load()
-
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100, length_function = len)
 texts = text_splitter.split_documents(data)
 
@@ -32,6 +31,8 @@ pinecone.init(
 index_name = "cr7ai" # pinecone index 
 
 docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index_name)
+
+
 
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
@@ -66,13 +67,23 @@ def ask():
 
         # # Return the answer as JSON response
         response = {
-            'answer': answer
+            'answer': answer,
+            'document_ids': [1234567890, 9876543210]
         }
 
         return jsonify(response)
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# @app.route('/documents/<document_id>')
+# def get_document(document_id):
+#     # Get the full text of the document from the Pinecone DB.
+#     document = pinecone.init.get_document(document_id)
+#     console.log(document)
+
+#     # Return the full text of the document as a JSON response.
+#     return jsonify({'text': document.text})
 
 if __name__ == '__main__':
     app.run(debug=True)

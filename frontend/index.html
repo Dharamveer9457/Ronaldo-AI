@@ -25,6 +25,7 @@
     </div>
     <script>
 
+        let document_ids;
         function toggleLoader(showLoader) {
             const loader = document.querySelector(".spinner");
             const responseElement = document.getElementById("response");
@@ -36,6 +37,21 @@
                 loader.style.display = "none";
                 responseElement.style.display = "block";
             }
+        }
+
+        function viewDocuments() {
+                var documentIds = JSON.parse(data.document_ids);
+            // Send a request to the server to get the full text of each document.
+            // for (const documentId of documentIds) {
+            //     fetch(`http://localhost:5000/documents/${documentId}`)
+            //         .then(response => response.json())
+            //         .then(data => {
+            //             // Display the full text of the document to the user.
+            //             const documentText = data.text;
+            //             alert(documentText);
+            //         });
+            // }
+            window.open(`/documents/${documentIds[0]}`, '_blank');
         }
 
         function askQuestion() {
@@ -64,6 +80,8 @@
                 responseElement.innerHTML = `${answer}`;
                 responseElement.style.display = "block";
                 toggleLoader(false);
+                document_ids = data.document_ids
+                console.log(document_ids)
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -71,6 +89,8 @@
                 toggleLoader(false);
             });
         }
+
+
     </script>
 </body>
 </html>
