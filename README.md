@@ -1,2 +1,2 @@
 # Ronaldo-AI
-Run this on localhost onl
+Run this on localhost only
